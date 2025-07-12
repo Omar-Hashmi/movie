@@ -1,18 +1,14 @@
-import { useNavigate } from "react-router-dom";
-import "../components/Form.css";
+import React, { useEffect } from "react";
 
 const Home = () => {
-  const navigate = useNavigate();
+  useEffect(() => {
+    console.log("Home page loaded");
+  }, []);
 
   return (
-    <div className="home-container">
-      <div className="home-card">
-        <h1>Welcome to Movie App</h1>
-        <p>Discover, review, and save your favorite movies!</p>
-        <button className="home-login-btn" onClick={() => navigate("/login")}>
-          Login
-        </button>
-      </div>
+    <div style={{ padding: "2rem" }}>
+      <h1>🏠 Welcome to the Home Page!</h1>
+      <p>You are now logged in.</p>
     </div>
   );
 };
