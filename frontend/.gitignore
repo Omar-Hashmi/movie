@@ -24,6 +24,7 @@ dist-ssr
 *.sw?
 
 
-
-frontend/node_modules/
+node_modules
+dist
+dist-ssr
 package-lock.json
