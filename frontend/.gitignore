@@ -23,5 +23,7 @@ dist-ssr
 *.sln
 *.sw?
 
-node_modules
+
+
+frontend/node_modules/
 package-lock.json
