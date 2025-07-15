@@ -1,10 +1,6 @@
-import React, { useEffect } from "react";
+import React from "react";
 
 const Home = () => {
-  useEffect(() => {
-    console.log("Home page loaded");
-  }, []);
-
   return (
     <div style={{ padding: "2rem" }}>
       <h1>🏠 Welcome to the Home Page!</h1>
