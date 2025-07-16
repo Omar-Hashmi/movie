@@ -1,15 +1,16 @@
+// db/connect.ts
 import mongoose from 'mongoose';
 import dotenv from 'dotenv';
+import logger from '../utils/logger';
 
 dotenv.config();
-// Connect to MongoDB using the connection string from .env; 
-// if not provided, it will default to an empty string which will cause an error.
+
 export const connectDB = async () => {
   try {
     await mongoose.connect(process.env.MONGO_URI || '');
-    console.log('✅ MongoDB connected');
+    logger.info('✅ MongoDB connected');
   } catch (err) {
-    console.error('❌ MongoDB connection error:', err);
+    logger.error(`❌ MongoDB connection error: ${err}`);
     process.exit(1);
   }
 };
