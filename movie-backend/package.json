@@ -1,17 +1,16 @@
 {
   "name": "movie-backend",
   "version": "1.0.0",
-  "main": "index.js",
+  "description": "Backend API for Movie Application",
+  "main": "dist/app.js",
   "scripts": {
     "dev": "nodemon src/app.ts",
     "build": "tsc",
-    "start": "node dist/app.js",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start": "node dist/app.js"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
-  "description": "",
   "dependencies": {
     "bcrypt": "^6.0.0",
     "dotenv": "^17.2.0",

@@ -4,6 +4,7 @@ import path from 'path';
 import { connectDB } from './config/database';
 import authRoutes from './routes/auth';
 import movieRoutes from './routes/movie';
+import logger from './utils/logger';
 
 // ✅ Load .env from root directory
 dotenv.config({ path: path.resolve(__dirname, '../../.env') });
@@ -20,4 +21,6 @@ app.use('/api/movies', movieRoutes);
 
 // ✅ Start the server
 const PORT = process.env.PORT || 5000;
-app.listen(PORT, () => console.log(`Server running on http://localhost:${PORT}`));
+app.listen(PORT, () => {
+  logger.info(`🚀 Server running on http://localhost:${PORT}`);
+});
