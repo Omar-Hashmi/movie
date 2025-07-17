@@ -1,4 +1,0 @@
-[2025-07-16 15:32:48] INFO: ✅ MongoDB connected
-{"level":"info","message":"✅ MongoDB connected","service":"movie-backend","timestamp":"2025-07-16 15:40:25"}
-{"level":"info","message":"✅ MongoDB connected","service":"movie-backend","timestamp":"2025-07-16 15:57:27"}
-{"level":"info","message":"✅ MongoDB connected","service":"movie-backend","timestamp":"2025-07-16 15:58:45"}
