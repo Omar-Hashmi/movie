@@ -1,10 +1,7 @@
-import { Router } from 'express';
-import { getAllMovies } from '../controller/movieController';
-import { authenticate } from '../middleware/auth';
+import express from 'express';
 
-const router = Router();
+const router = express.Router();
 
-router.get('/', authenticate, getAllMovies);
+// ✅ Movie routes will go here later
 
 export default router;
-

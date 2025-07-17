@@ -1,70 +1,55 @@
 import express from 'express';
+import User from '../models/User';
 import bcrypt from 'bcrypt';
-import { User } from '../models/User';
 import { generateAccessToken, generateRefreshToken } from '../utils/token';
-import {
-  HTTP_STATUS,
-  ERROR_MESSAGES,
-  SUCCESS_MESSAGES,
-  sendResponse,
-  sendErrorResponse,
-  jsonResponse,
-} from '../constants/httpResponses';
+import {ERROR_MESSAGES, HTTP_STATUS} from "../utils/httpResponses";
+import { sendResponse, sendErrorResponse, jsonResponse } from '../utils/httpResponses';
 
 const router = express.Router();
 
 /**
- * @route   POST /api/auth/login
- * @desc    Authenticate user and return JWT tokens
+ * Login route to authenticate user and generate JWT tokens
  */
 router.post('/login', async (req, res) => {
-  const { email, password } = req.body;
-
-  try {
+    const { email, password } = req.body;
     const user = await User.findOne({ email });
 
-    if (!user) {
-      return sendErrorResponse(res, HTTP_STATUS.UNAUTHORIZED, ERROR_MESSAGES.INVALID_CREDENTIALS);
+    //  Incase user is not found or password is incorrect
+    if (!user){
+        sendErrorResponse(res, HTTP_STATUS.UNAUTHORIZED, ERROR_MESSAGES.INVALID_CREDENTIALS);
+        return;
     }
 
-    const isMatch = await bcrypt.compare(password, user.password);
-    if (!isMatch) {
-      return sendErrorResponse(res, HTTP_STATUS.UNAUTHORIZED, ERROR_MESSAGES.INVALID_CREDENTIALS);
+    //  If user is found, compare the password
+    if (user) {
+        const isMatch = await bcrypt.compare(password, user.password);
+        if (!isMatch){
+            // res.status(HTTP_STATUS.UNAUTHORIZED).send(ERROR_MESSAGES.INVALID_CREDENTIALS);
+            sendErrorResponse(res, HTTP_STATUS.UNAUTHORIZED, ERROR_MESSAGES.INVALID_CREDENTIALS);
+            return;
+        }
     }
 
+    //  Generate JWT tokens
     const accessToken = generateAccessToken(user._id.toString());
     const refreshToken = generateRefreshToken(user._id.toString());
 
-    return jsonResponse(res, {
-      accessToken,
-      refreshToken,
-    });
-  } catch (err) {
-    return sendErrorResponse(res, HTTP_STATUS.SERVER_ERROR, ERROR_MESSAGES.LOGIN_ERROR);
-  }
+    jsonResponse(res, { token: accessToken });
+
 });
 
 /**
- * @route   POST /api/auth/register
- * @desc    Register a new user
+ * Register route to create a new user
  */
 router.post('/register', async (req, res) => {
-  const { username, email, password } = req.body;
-
-  try {
-    const existing = await User.findOne({ email });
-    if (existing) {
-      return sendErrorResponse(res, HTTP_STATUS.BAD_REQUEST, ERROR_MESSAGES.EMAIL_EXISTS);
+    const { username, email, phoneNumber, password } = req.body;
+    try {
+        const user = new User({ username, email, phoneNumber, password });
+        await user.save();
+        sendErrorResponse(res, HTTP_STATUS.REGISTERED, ERROR_MESSAGES.REGISTER_SUCCESSFUL);
+    } catch (error) {
+        sendErrorResponse(res, HTTP_STATUS.BAD_REQUEST, ERROR_MESSAGES.REGISTER_FAILED);
     }
-
-    const hashed = await bcrypt.hash(password, 10);
-    const user = new User({ username, email, password: hashed });
-    await user.save();
-
-    return sendResponse(res, HTTP_STATUS.CREATED, SUCCESS_MESSAGES.USER_CREATED);
-  } catch (err) {
-    return sendErrorResponse(res, HTTP_STATUS.SERVER_ERROR, ERROR_MESSAGES.REGISTER_FAILED);
-  }
 });
 
 export default router;
