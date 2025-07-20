@@ -1,55 +1,61 @@
-import express from 'express';
-import User from '../models/User';
+import { Request, Response } from 'express';
 import bcrypt from 'bcrypt';
-import { generateAccessToken, generateRefreshToken } from '../utils/token';
-import {ERROR_MESSAGES, HTTP_STATUS} from "../utils/httpResponses";
-import { sendResponse, sendErrorResponse, jsonResponse } from '../utils/httpResponses';
+import { User } from '../models/User';
+import { IUser } from '../types/type';
+import { sendSuccess, sendError } from '../utils/httpResponses';
+import {
+  EMAIL_EXISTS as EMAIL_ALREADY_EXISTS_MESSAGE,
+  USER_CREATED as USER_CREATED_MESSAGE,
+  SIGNUP_ERROR as SIGNUP_FAILURE_MESSAGE,
+  LOGIN_ERROR as LOGIN_FAILURE_MESSAGE,
+  USER_NOT_FOUND as USER_NOT_FOUND_MESSAGE,
+  INVALID_PASSWORD as INVALID_PASSWORD_MESSAGE
+} from '../constants/messages';
 
-const router = express.Router();
+import { generateToken } from '../utils/jwt';
+import {
+  STATUS_BAD_REQUEST,
+  STATUS_NOT_FOUND,
+  STATUS_UNAUTHORIZED,
+  STATUS_INTERNAL_SERVER_ERROR,
+} from '../constants/statusCodes';
 
-/**
- * Login route to authenticate user and generate JWT tokens
- */
-router.post('/login', async (req, res) => {
-    const { email, password } = req.body;
-    const user = await User.findOne({ email });
+// Handles user signup logic
+export const signup = async (req: Request, res: Response) => {
+  const { username, email, password } = req.body;
 
-    //  Incase user is not found or password is incorrect
-    if (!user){
-        sendErrorResponse(res, HTTP_STATUS.UNAUTHORIZED, ERROR_MESSAGES.INVALID_CREDENTIALS);
-        return;
-    }
+  try {
+    const existingUser = await User.findOne({ email });
+    if (existingUser) 
+      return sendError(res, STATUS_BAD_REQUEST, EMAIL_ALREADY_EXISTS_MESSAGE);
 
-    //  If user is found, compare the password
-    if (user) {
-        const isMatch = await bcrypt.compare(password, user.password);
-        if (!isMatch){
-            // res.status(HTTP_STATUS.UNAUTHORIZED).send(ERROR_MESSAGES.INVALID_CREDENTIALS);
-            sendErrorResponse(res, HTTP_STATUS.UNAUTHORIZED, ERROR_MESSAGES.INVALID_CREDENTIALS);
-            return;
-        }
-    }
+    const hashedPassword = await bcrypt.hash(password, 10);
+    const user = new User({ username, email, password: hashedPassword });
+    await user.save();
 
-    //  Generate JWT tokens
-    const accessToken = generateAccessToken(user._id.toString());
-    const refreshToken = generateRefreshToken(user._id.toString());
+    return sendSuccess(res, USER_CREATED_MESSAGE);
+  } catch (err) {
+    return sendError(res, STATUS_INTERNAL_SERVER_ERROR, SIGNUP_FAILURE_MESSAGE, err);
+  }
+};
 
-    jsonResponse(res, { token: accessToken });
+// Handles user login logic
+export const login = async (req: Request, res: Response) => {
+  const { email, password } = req.body;
 
-});
+  try {
+    const user = await User.findOne({ email }) as IUser | null;
+    if (!user) 
+      return sendError(res, STATUS_NOT_FOUND, USER_NOT_FOUND_MESSAGE);
 
-/**
- * Register route to create a new user
- */
-router.post('/register', async (req, res) => {
-    const { username, email, phoneNumber, password } = req.body;
-    try {
-        const user = new User({ username, email, phoneNumber, password });
-        await user.save();
-        sendErrorResponse(res, HTTP_STATUS.REGISTERED, ERROR_MESSAGES.REGISTER_SUCCESSFUL);
-    } catch (error) {
-        sendErrorResponse(res, HTTP_STATUS.BAD_REQUEST, ERROR_MESSAGES.REGISTER_FAILED);
-    }
-});
+    const isPasswordValid = await bcrypt.compare(password, user.password);
+    if (!isPasswordValid) 
+      return sendError(res, STATUS_UNAUTHORIZED, INVALID_PASSWORD_MESSAGE);
 
-export default router;
+    const token = generateToken((user._id as string).toString());
+
+    return res.json({ token });
+  } catch (err) {
+    return sendError(res, STATUS_INTERNAL_SERVER_ERROR, LOGIN_FAILURE_MESSAGE, err);
+  }
+};
