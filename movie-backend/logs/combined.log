@@ -1,0 +1,46 @@
+{"level":"info","message":"🚀 Server running on http://localhost:5000","service":"movie-backend","timestamp":"2025-07-17 22:40:39"}
+{"level":"info","message":"✅ MongoDB connected","service":"movie-backend","timestamp":"2025-07-17 22:40:40"}
+{"level":"info","message":"🚀 Server running on http://localhost:5000","service":"movie-backend","timestamp":"2025-07-18 11:27:31"}
+{"level":"info","message":"✅ MongoDB connected","service":"movie-backend","timestamp":"2025-07-18 11:27:31"}
+{"level":"info","message":"🚀 Server running on http://localhost:5000","service":"movie-backend","timestamp":"2025-07-18 11:42:50"}
+{"level":"info","message":"✅ MongoDB connected","service":"movie-backend","timestamp":"2025-07-18 11:42:50"}
+{"level":"info","message":"🚀 Server running on http://localhost:5000","service":"movie-backend","timestamp":"2025-07-18 12:30:11"}
+{"level":"info","message":"✅ MongoDB connected","service":"movie-backend","timestamp":"2025-07-18 12:30:11"}
+{"level":"info","message":"🚀 Server running on http://localhost:5000","service":"movie-backend","timestamp":"2025-07-18 12:52:54"}
+{"level":"info","message":"✅ MongoDB connected","service":"movie-backend","timestamp":"2025-07-18 12:52:54"}
+{"level":"info","message":"🚀 Server running on http://localhost:5000","service":"movie-backend","timestamp":"2025-07-20 19:38:42"}
+{"level":"info","message":"✅ MongoDB connected","service":"movie-backend","timestamp":"2025-07-20 19:38:42"}
+{"level":"info","message":"Server running on http://localhost:5000","service":"movie-backend","timestamp":"2025-07-21 12:41:35"}
+{"level":"info","message":"✅ MongoDB connected","service":"movie-backend","timestamp":"2025-07-21 12:41:35"}
+{"level":"info","message":"Server running on http://localhost:5000","service":"movie-backend","timestamp":"2025-07-21 12:42:10"}
+{"level":"info","message":"✅ MongoDB connected","service":"movie-backend","timestamp":"2025-07-21 12:42:10"}
+{"level":"info","message":"Server running on http://localhost:5000","service":"movie-backend","timestamp":"2025-07-21 14:35:16"}
+{"level":"info","message":"✅ MongoDB connected","service":"movie-backend","timestamp":"2025-07-21 14:35:16"}
+{"level":"info","message":"Server running on http://localhost:5000","service":"movie-backend","timestamp":"2025-07-22 13:56:02"}
+{"level":"info","message":"✅ MongoDB connected","service":"movie-backend","timestamp":"2025-07-22 13:56:02"}
+{"level":"info","message":"Server running on http://localhost:5000","service":"movie-backend","timestamp":"2025-07-22 15:28:54"}
+{"level":"info","message":"✅ MongoDB connected","service":"movie-backend","timestamp":"2025-07-22 15:28:54"}
+{"level":"info","message":"Server running on http://localhost:5000","service":"movie-backend","timestamp":"2025-07-22 15:41:44"}
+{"level":"info","message":"✅ MongoDB connected","service":"movie-backend","timestamp":"2025-07-22 15:41:44"}
+{"level":"info","message":"Server running on http://localhost:5000","service":"movie-backend","timestamp":"2025-07-22 15:47:04"}
+{"level":"info","message":"✅ MongoDB connected","service":"movie-backend","timestamp":"2025-07-22 15:47:04"}
+{"level":"info","message":"Server running on http://localhost:5000","service":"movie-backend","timestamp":"2025-07-22 15:48:17"}
+{"level":"info","message":"✅ MongoDB connected","service":"movie-backend","timestamp":"2025-07-22 15:48:17"}
+{"level":"info","message":"Searching movies with query: \"batman\"","query":"batman","service":"tmdb","timestamp":"2025-07-22 15:49:06"}
+{"level":"info","message":"TMDB API Request: GET /search/movie","method":"get","service":"tmdb","timestamp":"2025-07-22 15:49:06","url":"/search/movie"}
+{"level":"info","message":"TMDB API Response: 200 /search/movie","service":"tmdb","status":200,"timestamp":"2025-07-22 15:49:06","url":"/search/movie"}
+{"level":"info","message":"Search found 20 movies","query":"batman","resultsCount":20,"service":"tmdb","timestamp":"2025-07-22 15:49:06"}
+{"level":"info","message":"Fetching trending movies from TMDB","service":"tmdb","timestamp":"2025-07-22 15:49:18"}
+{"level":"info","message":"TMDB API Request: GET /trending/movie/week","method":"get","service":"tmdb","timestamp":"2025-07-22 15:49:18","url":"/trending/movie/week"}
+{"level":"info","message":"TMDB API Response: 200 /trending/movie/week","service":"tmdb","status":200,"timestamp":"2025-07-22 15:49:19","url":"/trending/movie/week"}
+{"level":"info","message":"Successfully fetched 20 trending movies","service":"tmdb","timestamp":"2025-07-22 15:49:19"}
+{"level":"info","message":"Server running on http://localhost:5000","service":"movie-backend","timestamp":"2025-07-22 16:02:11"}
+{"level":"info","message":"✅ MongoDB connected","service":"movie-backend","timestamp":"2025-07-22 16:02:11"}
+{"level":"info","message":"Fetching trending movies from TMDB","service":"tmdb","timestamp":"2025-07-22 16:02:20"}
+{"level":"info","message":"TMDB API Request: GET /trending/movie/week","method":"get","service":"tmdb","timestamp":"2025-07-22 16:02:20","url":"/trending/movie/week"}
+{"level":"info","message":"TMDB API Response: 200 /trending/movie/week","service":"tmdb","status":200,"timestamp":"2025-07-22 16:02:21","url":"/trending/movie/week"}
+{"level":"info","message":"Successfully fetched 20 trending movies","service":"tmdb","timestamp":"2025-07-22 16:02:21"}
+{"level":"info","message":"Server running on http://localhost:5000","service":"movie-backend","timestamp":"2025-07-22 16:03:48"}
+{"level":"info","message":"✅ MongoDB connected","service":"movie-backend","timestamp":"2025-07-22 16:03:48"}
+{"level":"info","message":"Server running on http://localhost:5000","service":"movie-backend","timestamp":"2025-07-22 16:07:44"}
+{"level":"info","message":"✅ MongoDB connected","service":"movie-backend","timestamp":"2025-07-22 16:07:44"}
