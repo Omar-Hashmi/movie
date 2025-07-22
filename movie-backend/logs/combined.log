@@ -44,3 +44,5 @@
 {"level":"info","message":"✅ MongoDB connected","service":"movie-backend","timestamp":"2025-07-22 16:03:48"}
 {"level":"info","message":"Server running on http://localhost:5000","service":"movie-backend","timestamp":"2025-07-22 16:07:44"}
 {"level":"info","message":"✅ MongoDB connected","service":"movie-backend","timestamp":"2025-07-22 16:07:44"}
+{"level":"info","message":"Server running on http://localhost:5000","service":"movie-backend","timestamp":"2025-07-22 16:27:34"}
+{"level":"info","message":"✅ MongoDB connected","service":"movie-backend","timestamp":"2025-07-22 16:27:34"}
