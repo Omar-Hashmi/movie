@@ -9,7 +9,9 @@ export const INVALID_TOKEN = "Invalid token";
 export const MOVIES_PLACEHOLDER = "List of all movies (to be implemented)";
 export const TMDB_FETCH_ERROR = "Failed to fetch movies from TMDB";
 export const TMDB_SEARCH_ERROR = "Failed to search movies from TMDB";
+export const TMDB_SEARCH_SUCCESS = "Movies search completed successfully"; // ✅ add this
 export const QUERY_REQUIRED = "Query parameter is required";
 export const MONGODB_CONNECTED = "✅ MongoDB connected";
 export const MONGODB_CONNECTION_ERROR = "❌ MongoDB connection error";
 export const SERVER_START = (port: string | number) => `Server running on http://localhost:${port}`;
+export const TMDB_TRENDING_FETCHED = "Trending movies fetched successfully"; // if used
