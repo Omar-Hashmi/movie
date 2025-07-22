@@ -45,3 +45,10 @@ pids/
 uploads/
 tmp/
 temp/
+node_modules
+logs
+package-lock.json
+logs
+combined.log
+error.log
+package-lock.json
