@@ -9,6 +9,9 @@ export const UNAUTHORIZED = 'Unauthorized';
 export const INVALID_TOKEN = 'Invalid token';
 
 // Movies & TMDb
+export const TMDB_DETAILS_FETCHED = 'Movie details fetched successfully';
+export const TMDB_POPULAR_FETCHED = 'Popular movies fetched successfully';
+export const TMDB_TOP_RATED_FETCHED = 'Top rated movies fetched successfully';
 export const TMDB_TRENDING_ERROR = 'Failed to fetch trending movies';
 export const MOVIE_DETAILS_ERROR = 'Failed to fetch movie details';
 export const POPULAR_MOVIES_ERROR = 'Failed to fetch popular movies';
@@ -31,6 +34,13 @@ export const MOVIE_ID_REQUIRED = 'Movie ID is required';
 export const INVALID_MOVIE_ID = 'Invalid movie ID format';
 export const MOVIE_NOT_FOUND = 'Movie not found';
 export const QUERY_REQUIRED = 'Search query is required';
+
+
+export const TMDB_KEY_MISSING = 'TMDB API key is missing in environment variables.';
+export const DEFAULT_PORT = 3000;
+export const DEFAULT_JWT_EXPIRES_IN = '1d';
+
+
 
 // Database & Server
 export const MONGODB_CONNECTED = '✅ MongoDB connected';
