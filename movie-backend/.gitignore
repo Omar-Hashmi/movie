@@ -1,7 +1,54 @@
+# Node modules
+node_modules/
+
+# Logs
+logs/
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# Runtime data
+pids
+*.pid
+*.seed
+*.pid.lock
+
+# dotenv environment variables
+.env
+.env.*  # optional if you have multiple like .env.local
+
+# TypeScript cache
+*.tsbuildinfo
+
+# Output folders
+dist/
+build/
+
+# VSCode settings
+.vscode/
+
+# OS-specific files
+.DS_Store
+Thumbs.db
+
+# Debug
+coverage/
+.nyc_output/
+
+# Optional PM2 process files
+pids/
+*.pid
+*.log
+
+# Optional: Ignore uploads or temp files if any
+uploads/
+tmp/
+temp/
 node_modules
-dist
-public
+logs
 package-lock.json
 logs
 combined.log
 error.log
+package-lock.json
