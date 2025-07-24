@@ -39,3 +39,13 @@ export const searchMovies = async (query: string) => {
     throw new Error(TMDB_SEARCH_ERROR);
   }
 };
+
+// ✅ NEW: Fetch movie by ID
+export const fetchMovieById = async (movieId: string) => {
+  try {
+    const response = await tmdb.get(`/movie/${movieId}`);
+    return response.data;
+  } catch (error) {
+    throw new Error(`Error fetching movie with ID ${movieId}`);
+  }
+};
