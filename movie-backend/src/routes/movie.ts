@@ -1,46 +1,33 @@
-import express, { Request, Response } from 'express';
+import express from 'express';
 import asyncHandler from 'express-async-handler';
-import { fetchTrendingMovies, searchMovies } from '../services/tmdb';
-import * as messages from '../constants/messages';
+import {
+  fetchTrendingMovies,
+  fetchPopularMovies,
+  fetchTopRatedMovies,
+  fetchUpcomingMovies,
+  fetchNowPlayingMovies,
+  fetchMovieDetails,
+  fetchSimilarMovies,
+  fetchMovieRecommendations,
+  handleSearchMovies,
+} from '../controller/movieController';
 
 const router = express.Router();
 
-// ✅ GET /api/movies/tmdb/trending (No auth)
-router.get(
-  '/tmdb/trending',
-  asyncHandler(async (req: Request, res: Response): Promise<void> => {
-    const movies = await fetchTrendingMovies();
+// ✅ Health check for movie route
+router.get('/test', (_req, res) => {
+  res.send('✅ Movie router is working');
+});
 
-    res.json({
-      success: true,
-      message: messages.TMDB_TRENDING_FETCHED,
-      data: movies,
-    });
-  })
-);
-
-// ✅ GET /api/movies/tmdb/search?q=batman (No auth)
-router.get(
-  '/tmdb/search',
-  asyncHandler(async (req: Request, res: Response): Promise<void> => {
-    const query = req.query.q as string;
-
-    if (!query) {
-      res.status(400).json({
-        success: false,
-        message: messages.QUERY_REQUIRED,
-      });
-      return;
-    }
-
-    const results = await searchMovies(query);
-
-    res.json({
-      success: true,
-      message: messages.TMDB_SEARCH_SUCCESS,
-      data: results,
-    });
-  })
-);
+// ✅ TMDb-related movie endpoints
+router.get('/tmdb/trending', asyncHandler(fetchTrendingMovies));
+router.get('/tmdb/popular', asyncHandler(fetchPopularMovies));
+router.get('/tmdb/top-rated', asyncHandler(fetchTopRatedMovies));
+router.get('/tmdb/upcoming', asyncHandler(fetchUpcomingMovies));
+router.get('/tmdb/now-playing', asyncHandler(fetchNowPlayingMovies));
+router.get('/tmdb/details/:id', asyncHandler(fetchMovieDetails));
+router.get('/tmdb/similar/:id', asyncHandler(fetchSimilarMovies));
+router.get('/tmdb/recommendations/:id', asyncHandler(fetchMovieRecommendations));
+router.get('/tmdb/search', asyncHandler(handleSearchMovies));
 
 export default router;
