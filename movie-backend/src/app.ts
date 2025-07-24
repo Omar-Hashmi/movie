@@ -1,4 +1,3 @@
-// src/app.ts
 import express from 'express';
 import dotenv from 'dotenv';
 import path from 'path';
@@ -18,11 +17,11 @@ connectDB();
 const app = express();
 
 app.use(cors({
-  origin: 'http://localhost:5173',
-  credentials: true
+  origin: 'http://localhost:5173', // your frontend
+  credentials: true                
 }));
 
-app.use(express.json());
+app.use(express.json()); // Enable parsing JSON bodies
 
 // ✅ Route handlers
 app.use('/api/auth', authRoutes);
@@ -32,5 +31,4 @@ app.use('/api/movies', movieRoutes);
 const PORT = process.env.PORT || 5000;
 app.listen(PORT, () => {
   logger.info(SERVER_START(PORT));
-  logger.info('✅ Movie routes registered');
 });
