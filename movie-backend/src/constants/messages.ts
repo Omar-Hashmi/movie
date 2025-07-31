@@ -9,6 +9,7 @@ export const UNAUTHORIZED = 'Unauthorized';
 export const INVALID_TOKEN = 'Invalid token';
 
 // Movies & TMDb - Success Messages
+export const TRENDING_MOVIES_FETCHED = 'Trending movies fetched successfully';
 export const NOW_PLAYING_FETCHED = 'Now playing movies fetched successfully';
 export const SIMILAR_MOVIES_FETCHED = 'Similar movies fetched successfully';
 export const RECOMMENDED_MOVIES_FETCHED = 'Recommended movies fetched successfully';
@@ -56,3 +57,10 @@ export const SERVER_START = (port: string | number) =>
 // Environment Defaults
 export const DEFAULT_PORT = '5000';
 export const DEFAULT_JWT_EXPIRES_IN = '1d';
+
+
+export const USER_UPDATED_SUCCESSFULLY = 'User profile updated successfully';
+export const AUTH_REQUIRED = "Authentication required";
+export const UNKNOWN_ERROR = "An unknown error occurred.";
+export const REVIEWS_FETCHED = 'Movie reviews fetched successfully';
+export const MOVIE_REVIEWS_FETCH_ERROR = 'Failed to fetch movie reviews';
