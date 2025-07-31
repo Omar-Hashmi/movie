@@ -19,15 +19,19 @@ router.get('/test', (_req, res) => {
   res.send('✅ Movie router is working');
 });
 
-// ✅ TMDb-related movie endpoints
+// ✅ TMDb-related movie endpoints with pagination support via `?page=`
 router.get('/tmdb/trending', asyncHandler(fetchTrendingMovies));
 router.get('/tmdb/popular', asyncHandler(fetchPopularMovies));
 router.get('/tmdb/top-rated', asyncHandler(fetchTopRatedMovies));
 router.get('/tmdb/upcoming', asyncHandler(fetchUpcomingMovies));
 router.get('/tmdb/now-playing', asyncHandler(fetchNowPlayingMovies));
+
+// ✅ Details, Similar, Recommendations (no pagination needed)
 router.get('/tmdb/details/:id', asyncHandler(fetchMovieDetails));
 router.get('/tmdb/similar/:id', asyncHandler(fetchSimilarMovies));
 router.get('/tmdb/recommendations/:id', asyncHandler(fetchMovieRecommendations));
+
+// ✅ Search with `?query=batman&page=2`
 router.get('/tmdb/search', asyncHandler(handleSearchMovies));
 
 export default router;

@@ -8,6 +8,9 @@ import movieRoutes from './routes/movie';
 import logger from './utils/logger';
 import cors from 'cors';
 import { SERVER_START } from './constants/messages';
+import favoritesRoutes from './routes/favorites';
+import { userRoutes } from './routes/userRoutes'; 
+
 
 // ✅ Load .env from root directory
 dotenv.config({ path: path.resolve(__dirname, '../../.env') });
@@ -27,9 +30,14 @@ app.use(express.json());
 // ✅ Route handlers
 app.use('/api/auth', authRoutes);
 app.use('/api/movies', movieRoutes);
+app.use('/api/favorites', favoritesRoutes);
+app.use('/api/users', userRoutes);
+
 
 // ✅ Start the server
 const PORT = process.env.PORT || 5000;
+
+
 app.listen(PORT, () => {
   logger.info(SERVER_START(PORT));
   logger.info('✅ Movie routes registered');
